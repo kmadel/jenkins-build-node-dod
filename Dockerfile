@@ -17,6 +17,8 @@ RUN groupadd -g 1001 jenkins
 # Create Jenkins user
 RUN useradd -u 1000 -g 1001 jenkins -d /home/jenkins
 RUN echo "jenkins:jenkins" | chpasswd
+#ugly hack for Jenkins Workflow docker.image.inside to work
+RUN echo "root:Docker!" | chpasswd
 
 # Make directories for [slaves] remote FS root, ssh privilege separation directory
 RUN mkdir -p /home/jenkins /var/run/sshd
